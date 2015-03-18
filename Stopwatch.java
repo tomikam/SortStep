@@ -18,7 +18,6 @@ public class Stopwatch {
     /* uses System.out to display the elapsed time in seconds */
   {
     // Replace the following line with your code
-    System.out.println("TEST" + (start - stop));
     return stop - start;
   }
   public void reset()

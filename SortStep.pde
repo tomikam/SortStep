@@ -1,6 +1,8 @@
-private int numInts = 100;
+import java.util.Arrays;
+private int numInts = 1000;
 private int largestInt = 100;
 private int [] myArray= new int[numInts];
+
 private Stopwatch watch = new Stopwatch();
 private Sorts mySorts = new Sorts();
 public void setup()
@@ -20,6 +22,7 @@ public void selectionSortTest()
   watch.reset();
   watch.start();
   mySorts.selectionSort(myArray);
+  // System.out.println(Arrays.toString(myArray));
   watch.stop();
   System.out.println("Selection Sort took " +watch.elapsedTime()/1000 + " microseconds");
 }
@@ -30,6 +33,7 @@ public void bubbleSortTest()
   watch.reset();
   watch.start();
   mySorts.bubbleSort(myArray);
+  // System.out.println(Arrays.toString(myArray));
   watch.stop();
   System.out.println("Bubble Sort took " +watch.elapsedTime()/1000 + " microseconds");
 }
@@ -40,6 +44,7 @@ public void insertionSortTest()
   watch.reset();
   watch.start();
   mySorts.insertionSort(myArray);
+  // System.out.println(Arrays.toString(myArray));
   watch.stop();
   System.out.println("Insertion Sort took " +watch.elapsedTime()/1000 + " microseconds");
 }
