@@ -47,50 +47,70 @@ public class Sorts
     }   
   }
 
-private void merge(int[] a, int first, int mid, int last) {
-  int[] p = new int[mid - first];
-  int[] q = new int[last - mid];
-
-  int[] c = new int[p.length + q.length];
-  int nP = 0;
-  int nQ = 0;
-  for (int i = 0; i < p.length + q.length; i ++) {
-    if (nP == p.length) {
-        c[i] = q[nQ];
-        nQ ++;
-    } else if (nQ == q.length) {
-        c[i] = p[nP];
-        nP ++;
-    } else if (p[nP] < q[nQ]) {
-        c[i] = p[nP];
-        nQ ++;
-    } else {
-        c[i] = q[nQ];
-        nQ ++;
+  private void merge(int[] a, int first, int mid, int last) {
+    int[] b = new int[last - first];
+    int nA = first;
+    int nB = mid + 1;
+    for (int i = 0; i <= last; i ++) {
+      if (nA > mid) {
+        b[i] = a[nA];
+        nA ++;
+      } else if (nB > last) {
+        b[i] = a[nB];
+        nB ++;
+      } else if (a[nA] > a[nB]) {
+        b[i] = a[nB];
+        nB ++;
+      } else {
+        b[i] = a[nA];
+        nA ++;
+      }
     }
+    a = b;
+
+
+
+
+
+
+
+    /*int[] x = new int[mid - first];
+    for (int i = first; i < mid - first; i ++) {
+      x[i] = a[i];
+    }
+    int[] y = new int[last - mid];
+    for (int j = mid; j < last - mid; j ++) {
+      x[j] = a[j];
+    }
+    int[] z = new int[last - first];
+    int xIdx = 0;
+    int yIdx = 0;
+    for (int k = 0; k < last - first; k ++) {
+      if (xIdx == mid - first) {
+        z[k] = y[yIdx];
+        yIdx ++;
+      } else if (yIdx == last - mid) {
+        z[k] = x[xIdx];
+        xIdx ++;
+      } else if (x[xIdx] < y[yIdx]) {
+        z[k] = x[xIdx];
+        xIdx ++;
+      } else if (x[xIdx] < y[yIdx]) {
+        z[k] = y[yIdx];
+        yIdx ++;
+      }
+    }*/
   }
-  a = c;
-}
-  
 
   public void mergeSort(int[] a, int first, int last)
   {
     //your code here
     int mid = (first + last)/2;
-    int[] p = new int[mid - first];
-    int[] q = new int[last - mid];
-
-    insertionSort(p);
-    insertionSort(q);
-
-
-
-    for (int i = 0; i < p.length; i ++) {
-      a[i] = p[i];
+    if (first != last) {
+      mergeSort(a, first, (first + last)/2);
+      mergeSort(a, (first + last)/2, last);
     }
-    for (int j = 0; j < q.length; j ++) {
-      a[mid - first - 1 + j] = q[j];
-    } 
+    merge(a, first, mid, last);
   }
 }
 

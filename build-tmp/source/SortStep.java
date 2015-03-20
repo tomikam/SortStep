@@ -74,6 +74,7 @@ public void mergeSortTest()
   watch.start();
   mySorts.mergeSort(myArray,0,myArray.length-1);
   watch.stop();
+  // System.out.println(Arrays.toString(myArray));
   System.out.println("Merge Sort took " +watch.elapsedTime()/1000 + " microseconds");
 }
 private void fillArray(int numInts, int largestInt)
