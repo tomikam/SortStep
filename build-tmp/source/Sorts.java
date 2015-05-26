@@ -48,15 +48,18 @@ public class Sorts
   }
 
   private void merge(int[] a, int first, int mid, int last) {
-    int[] b = new int[last - first];
+    int[] b = new int[a.length];
+    for (int j = first; j <= last; j ++) {
+      b[j] = a[j];
+    }
     int nA = first;
     int nB = mid + 1;
-    for (int i = 0; i <= last; i ++) {
+    for (int i = first; i <= last; i ++) {
       if (nA > mid) {
-        b[i] = a[nA];
+        b[i] = a[nB];
         nA ++;
       } else if (nB > last) {
-        b[i] = a[nB];
+        b[i] = a[nA];
         nB ++;
       } else if (a[nA] > a[nB]) {
         b[i] = a[nB];
@@ -66,7 +69,10 @@ public class Sorts
         nA ++;
       }
     }
-    a = b;
+    
+    for (int j = first; j <= last; j ++) {
+      a[j] = b[j];
+    }
 
 
 
@@ -107,8 +113,9 @@ public class Sorts
     //your code here
     int mid = (first + last)/2;
     if (first != last) {
-      mergeSort(a, first, (first + last)/2);
-      mergeSort(a, (first + last)/2, last);
+      mergeSort(a, first, mid);
+      mergeSort(a, mid + 1, last);
+
     }
     merge(a, first, mid, last);
   }
